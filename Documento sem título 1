@@ -1,0 +1,56 @@
+
+*** Criar projeto no Spring Initialzr e abri-lo na Idea:
+
+*** Criar pacote entidades e criar a primeira classe do projeto "Usuario", criar seus atributos, construtor vazio,
+construtor com os argumentos e gets e sets:
+
+*** Colar no arquivo application.properties que fica src/main/resources:
+ 
+=> spring.profiles.active=test /*duplicar o arquivo  src/main/resources == application.properties para que seja criado um novo perfil para testes. renomeando o arquivo para application-test.properties*/
+=> spring.jpa.open-in-view=false
+
+*** Colar no application-test.properties as configurações a seguir: 
+
+# Dados de conexão com o banco H2
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.username=sa
+spring.datasource.password=
+
+# H2 Client
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+
+# JPA, SQL
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.jpa.defer-datasource-initialization=true
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+Com essa configuração, configuramos a conexão com o banco de dados H2 no perfil de teste do projeto.
+
+*** Iniciar o mapeamento da classe usuario
+
+=> src/main/java/com.devsuperior/entidades: Usuario
+
+na linha superior ao nome da classe insira as anotações 
+@Entity == avisa ao sistema que tal classe é uma entidade:
+@Table(name = "tb_usuario") == cria no banco de dados uma tabela com o nome "tb_usuario":
+
+na linha superior ao atributo id insira as anotações
+@Id == avisa o sistema que tal atributo é o Id da tabela:
+@GeneratedValue(strategy = GenerationType.IDENTITY) == para que o atributo seja auto-incrementado no banco de dados.
+
+*** testa a conexão no navegador com os parametros configurados no arquivo application-test.properties para isso
+insira o caminho na aba do navegador http://localhost:8080/h2-console.
+Faça o login com os dados da configuração:
+
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.username=sa
+spring.datasource.password=
+
+*** Criar o tipo Enum com o nome StatusPedido
+
+*** Criar a classe com o nome de Pedido com seus atributos e iniciar o mapeamento para o banco de dados e seus relacionamentos editar com mais detalhes olhando o projeto.
+
+

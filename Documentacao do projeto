@@ -1,0 +1,12 @@
+
+*** Criar projeto no Spring Initialzr e abri-lo na Idea:
+
+*** Criar pacote entidades e criar a primeira classe do projeto "Usuario", criar seus atributos, construtor vazio,
+construtor com os argumentos e gets e sets:
+
+*** Colar no arquivo application.properties que fica src/main/resources:
+ 
+=> spring.profiles.active=test
+=> spring.jpa.open-in-view=false
+
+***
