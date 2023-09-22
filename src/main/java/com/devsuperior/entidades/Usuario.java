@@ -14,6 +14,7 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    @Column(unique = true)//esse campo email nao se repete.
     private String email;
     private String celular;
     private LocalDate dataNascimento;
@@ -82,5 +83,7 @@ public class Usuario {
         this.senha = senha;
     }
 
-
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
 }

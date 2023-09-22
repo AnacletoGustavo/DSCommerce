@@ -3,6 +3,9 @@ package com.devsuperior.entidades;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_pedido")
@@ -20,6 +23,8 @@ public class Pedido {
     private Usuario cliente;
     @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
     private Pagamento pagamento;
+    @OneToMany(mappedBy = "id.pedido")
+    private Set<ItemPedido> itens = new HashSet<>();
 
     public Pedido(){    }
     public Pedido(Long id, Instant momentoDoPedido, StatusPedido status, Usuario cliente, Pagamento pagamento) {
@@ -58,6 +63,13 @@ public class Pedido {
     }
     public void setCliente(Usuario cliente) {
         this.cliente = cliente;
+    }
+
+    public Set<ItemPedido> getItens() {
+        return itens;
+    }
+    public List<Produto> getProdutos(){
+        return itens.stream().map(ItemPedido::getProduto).toList();
     }
 }
 
